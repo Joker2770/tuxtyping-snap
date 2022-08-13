@@ -1,0 +1,112 @@
+
+# After registering a name on build.snapcraft.io, commit an uncommented line:
+name: tuxtyping
+version: '1.8.0' # just for humans, typically '1.2+git' or '1.3.2'
+summary: Tux Typing is an educational typing program for children starring Tux, the Linux Penguin. # 79 char long summary
+description: |
+  Tux Typing is an educational typing program for children starring Tux, the Linux Penguin.
+  The program includes two video game-style activities for younger players,
+  with phrases and finger lessons for older students. Extensive i18n. License: GPL.
+
+# icon: snap/gui/icon.png
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+base: core
+
+plugs: # plugs for theming, font settings, cursor and to use gtk3 file chooser
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/data-dir/themes
+    default-provider: gtk-common-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/data-dir/icons
+    default-provider: gtk-common-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/data-dir/sounds
+    default-provider: gtk-common-themes
+  
+apps:
+  tuxtyping:
+    command-chain: ["snap/command-chain/alsa-launch"]
+    command: usr/local/bin/tuxtyping
+    environment:
+      # pulseaudio
+      LD_LIBRARY_PATH: ${SNAP}/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio
+      # ALSA_CONFIG_PATH: ${SNAP}/etc/asound.conf
+      # PULSE_SYSTEM: 1
+      # PULSE_RUNTIME_PATH: /var/run/pulse
+      # PULSE_SERVER: unix:$XDG_RUNTIME_DIR/../pulse/native
+    extensions: [gnome-3-28]
+    plugs:
+      - audio-playback
+      - pulseaudio
+      - alsa
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7
+      - x11
+      - gsettings
+        
+layout:
+  /usr/share/midi/freepats:
+    bind: $SNAP/usr/share/midi/freepats
+  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
+    bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib
+  /usr/local/share/locale:
+    bind: $SNAP/usr/local/share/locale
+  /usr/local/share/tuxtype:
+    bind: $SNAP/usr/local/share/tuxtype
+  /usr/share/alsa:
+    bind: $SNAP/usr/share/alsa
+  /etc/timidity:
+    bind: $SNAP/etc/timidity
+  /etc/fonts:
+    bind: $SNAP/etc/fonts
+    
+parts:
+  alsa-mixin:
+    plugin: dump
+    source: https://github.com/diddlesnaps/snapcraft-alsa.git
+    source-subdir: snapcraft-assets
+    build-packages:
+      - libasound2-dev
+    stage-packages:
+      - libasound2
+      - libasound2-plugins
+      - yad
+
+  tuxtyping:
+    after: [alsa-mixin]
+    plugin: autotools
+    source: "https://github.com/Joker2770/raw/main/tuxtype_w_fonts-1.8.0.tar.gz"
+    source-type: tar
+    build-packages:
+      - gcc
+      - build-essential
+      - automake
+      - make
+      - libsdl1.2-dev
+      - libsdl-image1.2-dev
+      - libsdl-pango-dev
+      - libsdl2-ttf-dev
+      - libsdl-mixer1.2-dev
+      - librsvg2-dev
+  
+    stage-packages:
+      - libsdl1.2debian
+      - libsdl-image1.2
+      - libsdl-pango1
+      - libsdl2-ttf-2.0-0
+      - libsdl-mixer1.2
+      - freepats
+      - libmodplug1
+      - libopusfile0
+      - libpulse0
+      - libsndfile1
+      - librsvg2-2
+      - librsvg2-common

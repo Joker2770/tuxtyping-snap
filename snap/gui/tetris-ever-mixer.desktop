@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.8.0
+Encoding=UTF-8
+Name=Tux Typing
+Comment=Tux Typing is an educational typing program for children starring Tux, the Linux Penguin.
+Exec=tuxtyping
+Terminal=false
+Type=Application
+Categories=Game
+Icon=${SNAP}/meta/gui/icon.png
