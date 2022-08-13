@@ -32,7 +32,7 @@ plugs: # plugs for theming, font settings, cursor and to use gtk3 file chooser
 apps:
   tuxtyping:
     command-chain: ["snap/command-chain/alsa-launch"]
-    command: usr/local/bin/tuxtyping
+    command: usr/local/bin/tuxtype
     environment:
       # pulseaudio
       LD_LIBRARY_PATH: ${SNAP}/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio
@@ -50,6 +50,7 @@ apps:
       - wayland
       - unity7
       - x11
+      - opengl
       - gsettings
         
 layout:
@@ -115,3 +116,5 @@ parts:
       - libsndfile1
       - librsvg2-2
       - librsvg2-common
+      - libglu1-mesa
+      - libslang2
