@@ -61,6 +61,10 @@ layout:
     bind: $SNAP/usr/local/share/locale
   /usr/local/share/tuxtype:
     bind: $SNAP/usr/local/share/tuxtype
+  /usr/local/var/tuxtype:
+    bind: $SNAP/usr/local/var/tuxtype
+  /usr/local/etc/tuxtype:
+    bind: $SNAP/usr/local/etc/tuxtype
   /usr/share/alsa:
     bind: $SNAP/usr/share/alsa
   /etc/timidity:
