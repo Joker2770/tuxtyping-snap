@@ -13,7 +13,7 @@ description: |
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
 
-base: core
+base: core18
 
 plugs: # plugs for theming, font settings, cursor and to use gtk3 file chooser
   gtk-3-themes:
@@ -87,7 +87,7 @@ parts:
   tuxtyping:
     after: [alsa-mixin]
     plugin: autotools
-    source: "https://github.com/Joker2770/raw/main/tuxtype_w_fonts-1.8.0.tar.gz"
+    source: "https://github.com/Joker2770/tuxtyping-snap/raw/main/tuxtype_w_fonts-1.8.0.tar.gz"
     source-type: tar
     build-packages:
       - gcc
