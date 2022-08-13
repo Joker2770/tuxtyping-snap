@@ -2,7 +2,7 @@
 # After registering a name on build.snapcraft.io, commit an uncommented line:
 name: tuxtyping
 version: '1.8.0' # just for humans, typically '1.2+git' or '1.3.2'
-summary: Tux Typing is an educational typing program for children starring Tux, the Linux Penguin. # 79 char long summary
+summary: Tux Typing is an educational typing program for children. # 79 char long summary
 description: |
   Tux Typing is an educational typing program for children starring Tux, the Linux Penguin.
   The program includes two video game-style activities for younger players,
