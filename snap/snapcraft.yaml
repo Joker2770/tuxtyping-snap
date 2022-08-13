@@ -100,7 +100,8 @@ parts:
       - libsdl2-ttf-dev
       - libsdl-mixer1.2-dev
       - librsvg2-dev
-  
+    configflags:
+      - --prefix=/usr/local
     stage-packages:
       - libsdl1.2debian
       - libsdl-image1.2
