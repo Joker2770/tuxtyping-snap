@@ -56,8 +56,6 @@ apps:
       - removable-media
         
 layout:
-  /usr/share/midi/freepats:
-    bind: $SNAP/usr/share/midi/freepats
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
     bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib
   /usr/local/share/locale:
@@ -70,8 +68,6 @@ layout:
     bind: $SNAP/usr/local/etc/tuxtype
   /usr/share/alsa:
     bind: $SNAP/usr/share/alsa
-  /etc/timidity:
-    bind: $SNAP/etc/timidity
   /etc/fonts:
     bind: $SNAP/etc/fonts
     
@@ -116,3 +112,4 @@ parts:
       - librsvg2-common
       - libglu1-mesa
       - libslang2
+      - freeglut3
