@@ -8,11 +8,11 @@ description: |
   The program includes two video game-style activities for younger players,
   with phrases and finger lessons for older students. Extensive i18n. License: GPL.
 
-# icon: snap/gui/icon.png
+  _More build details: https://github.com/Joker2770/tuxtyping-snap_
 
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
-base: core18
+base: core20
 architectures:
   - build-on: ppc64el
 
@@ -32,16 +32,10 @@ plugs: # plugs for theming, font settings, cursor and to use gtk3 file chooser
   
 apps:
   tuxtyping:
-    command-chain: ["snap/command-chain/alsa-launch"]
+    command-chain: ["snap/command-chain/alsa-launch", "bin/desktop-launch"]
     command: usr/local/bin/tuxtype
     environment:
-      # pulseaudio
-      LD_LIBRARY_PATH: ${SNAP}/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio
-      # ALSA_CONFIG_PATH: ${SNAP}/etc/asound.conf
-      # PULSE_SYSTEM: 1
-      # PULSE_RUNTIME_PATH: /var/run/pulse
-      # PULSE_SERVER: unix:$XDG_RUNTIME_DIR/../pulse/native
-    extensions: [gnome-3-28]
+      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio/
     plugs:
       - home
       - audio-playback
@@ -73,7 +67,17 @@ layout:
     bind: $SNAP/etc/fonts
     
 parts:
+  desktop-glib-only:
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-subdir: glib-only
+    plugin: make
+    build-packages:
+      - libglib2.0-dev
+    stage-packages:
+      - libglib2.0-bin
+
   alsa-mixin:
+    after: [desktop-glib-only]
     plugin: dump
     source: https://github.com/diddlesnaps/snapcraft-alsa.git
     source-subdir: snapcraft-assets
@@ -100,7 +104,7 @@ parts:
       - libsdl2-ttf-dev
       - libsdl-mixer1.2-dev
       - librsvg2-dev
-    configflags:
+    autotools-configure-parameters:
       - --build=powerpc64le-unknown-linux-gnu
       - --prefix=/usr/local
     stage-packages:
