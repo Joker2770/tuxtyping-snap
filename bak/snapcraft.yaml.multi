@@ -85,8 +85,10 @@ parts:
   tuxtyping:
     after: [alsa-mixin]
     plugin: autotools
-    source: "https://github.com/Joker2770/tuxtyping-snap/raw/main/tuxtype_w_fonts-1.8.0.tar.gz"
-    source-type: tar
+    source: "https://github.com/tux4kids/tuxtype.git"
+    source-depth: 1
+    source-branch: master
+    source-type: git
     build-packages:
       - gcc
       - build-essential
