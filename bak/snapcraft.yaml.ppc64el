@@ -102,6 +102,7 @@ parts:
       - make
       - libsdl1.2-dev
       - libsdl-image1.2-dev
+      - libsdl-net1.2-dev
       - libsdl-pango-dev
       - libsdl2-ttf-dev
       - libsdl-mixer1.2-dev
@@ -112,6 +113,7 @@ parts:
     stage-packages:
       - libsdl1.2debian
       - libsdl-image1.2
+      - libsdl-net1.2
       - libsdl-pango1
       - libsdl2-ttf-2.0-0
       - libsdl-mixer1.2
