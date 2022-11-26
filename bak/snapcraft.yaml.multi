@@ -102,6 +102,7 @@ parts:
       - libsdl-mixer1.2-dev
       - librsvg2-dev
       - libxml2-dev
+      - libt4k-common0-dev
     configflags:
       - --prefix=/usr/local
     stage-packages:
@@ -116,5 +117,6 @@ parts:
       - librsvg2-common
       - libglu1-mesa
       - libslang2
+      - libt4k-common0
       - libxml2
       - freeglut3

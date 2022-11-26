@@ -108,6 +108,7 @@ parts:
       - libsdl-mixer1.2-dev
       - librsvg2-dev
       - libxml2-dev
+      - libt4k-common0-dev
     autotools-configure-parameters:
       - --build=powerpc64le-unknown-linux-gnu
       - --prefix=/usr/local
@@ -123,5 +124,6 @@ parts:
       - librsvg2-common
       - libglu1-mesa
       - libslang2
+      - libt4k-common0
       - libxml2
       - freeglut3
