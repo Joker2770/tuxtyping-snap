@@ -98,6 +98,7 @@ parts:
       - libsdl2-ttf-dev
       - libsdl-mixer1.2-dev
       - librsvg2-dev
+      - libxml2-dev
     configflags:
       - --build=aarch64-unknown-linux-gnu
       - --prefix=/usr/local
@@ -113,4 +114,5 @@ parts:
       - librsvg2-common
       - libglu1-mesa
       - libslang2
+      - libxml2
       - freeglut3
